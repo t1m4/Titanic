@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 plt.rc("font", size=14)
-dataset = pd.read_csv('titanic_data.csv', sep=',')
+dataset = pd.read_csv('source/titanic_data.csv', sep=',')
 dataset.head()
 # print(dataset)
 # print(dataset.Fare)
