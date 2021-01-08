@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 plt.rc("font", size=14)
 dataset = pd.read_csv('titanic_data.csv', sep=',')
 dataset.head()
-print(dataset)
-print(dataset.Fare)
+# print(dataset)
+# print(dataset.Fare)
 len_dataset = len(dataset)
 survived = np.sum(dataset["Survived"].to_numpy())
 # print(f"All - {len_dataset}\nSurvived - {survived}\nDied - {len_dataset - survived}")
@@ -103,15 +103,15 @@ weight = sigma * np.random.randn(datas_train.shape[1])
 start_time = time.time()
 res = start(datas_train, targets_train, weight, learning_rate, loops, sigma=0.001)
 
-fig = plt.figure()
-plt.plot(np.arange(1, loops + 1), res['loss'], color='black')
-plt.xlabel('number', fontsize=15)
-plt.ylabel('loss', fontsize=15)
+# fig = plt.figure()
+# plt.plot(np.arange(1, loops + 1), res['loss'], color='black')
+# plt.xlabel('number', fontsize=15)
+# plt.ylabel('loss', fontsize=15)
 # plt.show()
 
 # print(f"Test loss {np.int32(get_loss(datas_test, targets_test, res['best_weight']))}")
 # print(f"Best weight {res['best_weight']}")
-# print(f"Time - {time.time() - start_time}")
+print(f"Time - {time.time() - start_time}")
 #
 # print(f"Train:\nAccuracy {np.int32(get_accuracy(datas_train, targets_train, res['best_weight']) * 100)}")
 # print(f"Precisioon {np.int32(get_precision(datas_train, targets_train, res['best_weight']) * 100)}")
@@ -120,6 +120,7 @@ plt.ylabel('loss', fontsize=15)
 # print(f"Test:\nAccuracy {np.int32(get_accuracy(datas_test, targets_test, res['best_weight']) * 100)}")
 # print(f"Precisioon {np.int32(get_precision(datas_test, targets_test, res['best_weight']) * 100)}")
 # print(f"Recall {np.int32(get_recall(datas_test, targets_test, res['best_weight']) * 100)}\n")
+
 
 my_vectors = np.array([
     1, # class
