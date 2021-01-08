@@ -1,3 +1,4 @@
+import json
 import time
 import numpy as np
 import pandas as pd
@@ -121,6 +122,20 @@ print(f"Time - {time.time() - start_time}")
 # print(f"Precisioon {np.int32(get_precision(datas_test, targets_test, res['best_weight']) * 100)}")
 # print(f"Recall {np.int32(get_recall(datas_test, targets_test, res['best_weight']) * 100)}\n")
 
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return json.JSONEncoder.default(self, obj)
+def write_file(result):
+    with open('source/result.json', 'w') as f:
+        a = f.write(json.dumps(result, cls=NumpyEncoder))
+        print(a)
+        # json.dump(result, f, ensure_ascii=False)
+
+def read_file():
+    with open('source/result.json', "r") as f:
+        return json.loads(f.read())
 
 my_vectors = np.array([
     1, # class
