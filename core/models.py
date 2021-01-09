@@ -7,8 +7,8 @@ P_CLASS_CHOICES = [
     ('3', '3'),
 ]
 SEX_CHOICES = [
-    ('M', 'Man'),
-    ('W', 'Woman'),
+    ('0', 'Man'),
+    ('1', 'Woman'),
 ]
 # Create your models here.
 class Calculations(models.Model):
