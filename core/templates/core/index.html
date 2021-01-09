@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Are you survived?</title>
+</head>
+<body>
+    <h1>Are you survived in Titanic?</h1>
+    <p>Check it using our simple form based on machine learning</p>
+    {% if form %}
+        <form action="{% url 'core-form' }">
+            {% csrf_token %}
+            {{ form.as_p }}
+        </form>
+    <input type="submit" value="ok">
+    {% endif %}
+</body>
+</html>
