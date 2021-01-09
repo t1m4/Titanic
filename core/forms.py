@@ -1,10 +1,13 @@
-from django.forms import Form, ModelForm
+from django import  forms
 
 from core.models import Calculations
 
 
-class User(ModelForm):
+class User(forms.ModelForm):
+    age = forms.IntegerField(min_value=0, max_value=150)
+    siblings = forms.IntegerField(min_value=0, max_value=25, label="Sibling/Spouses aboard")
+    parents = forms.IntegerField(min_value=0,max_value=2, label="Parents/Children")
+    fare = forms.IntegerField(min_value=0, max_value=512)
     class Meta:
         model = Calculations
-        fields = ['p_class', 'sex', 'age', 'subling', 'parents', 'fare']
-        # fields = '__all__'
+        fields = ['p_class', 'sex']

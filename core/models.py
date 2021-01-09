@@ -20,5 +20,8 @@ class Calculations(models.Model):
     fare = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(512)])
     answers = models.BooleanField(default=False)
 
+    def __str__(self):
+        return "Age {}, answer - {}".format(self.age, self.answers)
+
 class Counts(models.Model):
     enter = models.IntegerField(validators=[MinValueValidator(0)])

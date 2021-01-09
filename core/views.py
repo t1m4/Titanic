@@ -2,14 +2,16 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 import numpy as np
 
 from core.forms import User
+from core.models import Calculations
 from project import start, datas_train, targets_train, weight, learning_rate, loops, sigma, write_file, read_file
 
 
@@ -27,8 +29,21 @@ class FormView(View):
     template_name = 'core/index.html'
     success_url = 'core-form'
     form_class = User
-    context = []
+    context = {}
     def get(self, request, *args, **kwargs):
         form = self.form_class()
         self.context = {'form': form}
         return render(request, self.template_name, context=self.context)
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            Calculations.objects.create(
+                p_class=form.cleaned_data['p_class'],
+                sex=form.cleaned_data['sex'],
+                age=form.cleaned_data['age'],
+                subling=form.cleaned_data['siblings'],
+                parents=form.cleaned_data['parents'],
+                fare=form.cleaned_data['fare'],
+            ).save()
+            return redirect(reverse(self.success_url))
