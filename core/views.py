@@ -12,7 +12,8 @@ import numpy as np
 
 from core.forms import User
 from core.models import Calculations
-from project import start, datas_train, targets_train, weight, learning_rate, loops, sigma, write_file, read_file
+from project import start, datas_train, targets_train, weight, learning_rate, loops, sigma, write_file, read_file, \
+    my_vectors, normalize_dataset, get_prediction
 
 
 @method_decorator(login_required, name='dispatch')
@@ -37,7 +38,10 @@ class FormView(View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
+            result = read_file()
+            user_vectors = np.array([int(v) for k, v in form.cleaned_data.items()])
+            my_vector = normalize_dataset(user_vectors)
+            answer = get_prediction(my_vector, result['best_weight'])
             Calculations.objects.create(
                 p_class=form.cleaned_data['p_class'],
                 sex=form.cleaned_data['sex'],
@@ -45,5 +49,6 @@ class FormView(View):
                 subling=form.cleaned_data['siblings'],
                 parents=form.cleaned_data['parents'],
                 fare=form.cleaned_data['fare'],
+                answers=answer
             ).save()
             return redirect(reverse(self.success_url))
