@@ -6,5 +6,5 @@ from core.models import Calculations
 class User(ModelForm):
     class Meta:
         model = Calculations
-        fields = ['p_class', 'age', 'subling', 'parents', 'fare']
+        fields = ['p_class', 'sex', 'age', 'subling', 'parents', 'fare']
         # fields = '__all__'
