@@ -24,4 +24,4 @@ class Calculations(models.Model):
         return "Age {}, answer - {}".format(self.age, self.answers)
 
 class Counts(models.Model):
-    enter = models.IntegerField(validators=[MinValueValidator(0)])
+    enter = models.IntegerField(validators=[MinValueValidator(0)], default=0)
