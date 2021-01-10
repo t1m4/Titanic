@@ -36,7 +36,7 @@ def get_client_ip(request):
     return ip
 class FormView(View):
     template_name = 'core/index.html'
-    success_url = 'core-form'
+    success_url = 'core-result'
     form_class = User
     context = {}
     def get(self, request, *args, **kwargs):
@@ -60,4 +60,18 @@ class FormView(View):
                 answers=answer
             ).save()
             Counts.objects.all().update(enter=F('enter') + 1)
+            request.session['answer'] = int(answer)
             return redirect(reverse(self.success_url))
+
+class ResultView(View):
+    template_name = 'core/result.html'
+    def get(self, request, *args, **kwargs):
+        answer = request.session.get('answer')
+        if answer == 1:
+            answer = 'yes'
+        elif answer == 0:
+            answer = 'no'
+        self.context = {'answer': answer}
+        if answer:
+            del request.session['answer']
+        return render(request, self.template_name, self.context)

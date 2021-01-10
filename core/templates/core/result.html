@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Are you survived?</title>
+    <style>
+        .container{
+            margin: 0 auto;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if answer == 'no'  %}
+            <h1>You are not lucky.</h1>
+        {% elif answer == 'yes' %}
+            <h1>Congratulations!!! You survived in Titanic</h1>
+        {% else %}
+            <h1>The answer is not given</h1>
+        {% endif %}
+        <a href="{% url 'core-form' %}">Go back</a>
+    </div>
+</body>
+</html>
