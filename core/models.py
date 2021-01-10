@@ -25,3 +25,6 @@ class Calculations(models.Model):
 
 class Counts(models.Model):
     enter = models.IntegerField(validators=[MinValueValidator(0)], default=0)
+
+    def __str__(self):
+        return "all - {}".format(self.enter)
