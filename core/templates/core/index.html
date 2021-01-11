@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Are you survived?</title>
+    <style>
+        body {
+            background-color: #f8f8f8;
+            font-size: 16px;
+        }
+        h1{
+            margin: 0 auto;
+            width: 300px;
+            text-align: center;
+
+        }
+
+        .form_container
+        {
+            margin: 0 auto;
+            width: 370px;
+            height: auto;
+            background-color: #fff;
+            box-shadow: 0 -5px 5px -5px #333;
+            padding: 15px;
+
+        }
+        .header
+        {
+            margin: 0 auto;
+            width: 370px;
+            height: auto;
+            background-color: #417690;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .form-submit{
+            margin-top: 15px;
+            width: 100%;
+            color: white;
+            background-color: #417690
+        }
+        input, select, label {
+            width: 100%;
+        }
+        label {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Are you survived in Titanic?</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p class="center_block header">Check it using our simple form based on machine learning</p>
+    <div class="form_container">
+        {% if form %}
+            <form action="{% url 'core-form' %}" method="post">
+                {% csrf_token %}
+                {% for i in form %}
+                    <div class="form-row">
+                        {{ i.label_tag }}
+                        {{ i }}
+                    </div>
+                {% endfor %}
+            <input class="form-submit" type="submit" value="submit">
+        {% endif %}
+    </div>
+</body>
+</html>
