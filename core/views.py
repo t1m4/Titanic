@@ -13,8 +13,7 @@ import numpy as np
 
 from core.forms import User
 from core.models import Calculations, Counts
-from project import start, datas_train, targets_train, weight, learning_rate, loops, sigma, write_file, read_file, \
-    my_vectors, normalize_dataset, get_prediction
+from project import start, datas_train, targets_train, weight, learning_rate, loops, sigma, write_file, read_file, normalize_dataset, get_prediction
 
 
 @method_decorator(login_required, name='dispatch')

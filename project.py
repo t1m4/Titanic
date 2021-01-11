@@ -102,7 +102,7 @@ sigma = 0.001
 weight = sigma * np.random.randn(datas_train.shape[1])
 
 start_time = time.time()
-res = start(datas_train, targets_train, weight, learning_rate, loops, sigma=0.001)
+# res = start(datas_train, targets_train, weight, learning_rate, loops, sigma=0.001)
 
 # fig = plt.figure()
 # plt.plot(np.arange(1, loops + 1), res['loss'], color='black')
@@ -137,13 +137,13 @@ def read_file():
     with open('source/result.json', "r") as f:
         return json.loads(f.read())
 
-my_vectors = np.array([
-    1, # class
-    0, # sex
-    20,# age
-    1, # subling
-    2, # parents
-    48 # fare
-])
-my_vector = normalize_dataset(my_vectors)
-print(f"Answer: {get_prediction(my_vector, res['best_weight'])}")
+# my_vectors = np.array([
+#     1, # class
+#     0, # sex
+#     20,# age
+#     1, # subling
+#     2, # parents
+#     48 # fare
+# ])
+# my_vector = normalize_dataset(my_vectors)
+# print(f"Answer: {get_prediction(my_vector, res['best_weight'])}")
